@@ -1,0 +1,64 @@
+.App {
+  background-color: #f8c102;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.ekat {
+  text-align: center;
+  color: black;
+  font-size: calc(20px + 2vmin);
+  background-color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.yksiTapahtuma {
+  border: solid 2px black;
+}
+
+.title, 
+.pvm {
+  border-right: solid 1px  black;
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.klo {
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.price,
+.category,
+.district,
+.info {
+  border-right: solid 1px black;
+  font-size: calc(3px + 2vmin);
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.contact {
+  font-size: calc(3px + 2vmin);
+  padding-right: 10px;
+  padding-left: 10px;
+}
+
+.apinNimi {
+  font-family: 'Carter One', cursive;
+  font-size: calc(30px + 2vmin);
+  color: #f80002;
+  text-shadow: 4px 4px black
+}
+
+.uusiPiletti {
+  padding-top: 10px;
+}
+
+.yksiTapahtuma {
+  border: solid 2 px black;
+}
