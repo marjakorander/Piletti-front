@@ -1,11 +1,11 @@
 import React, { Component } from "react";
+import Piletti from './piletti';
 
 class Pilettidata extends Component {
   constructor() {
     super();
     this.state = { 
-      data: [],
-      isHidden: true};
+      data: []}
   }
 
   componentDidMount() {
@@ -14,20 +14,14 @@ class Pilettidata extends Component {
   }
 
   haePiletti = () => {
-    fetch("/sortattu")
+    fetch("/sortatutViisi")
       .then(response => response.json())
       .then(data => this.setState({ data }));
     console.log("Matsku saatu");
   }
 
-  toggleHidden () {
-    this.setState({
-      isHidden: !this.state.isHidden
-    })
-  }
-
   render() {
-    const tapahtumalista = this.state.data.map(data => {
+    const tapahtumalista = this.state.data.map(function(data) {
       // päivä millisekunneiksi ja siitä päivämääräksi
       var paivays = new Date(data.paivays);
       var millisekunnit = paivays.getTime();
@@ -36,26 +30,15 @@ class Pilettidata extends Component {
       var kellonaika = data.klo;
       var mihinAikaan = kellonaika.substr(0,5);
 
-      const Lisatiedot = () => (
-        <div className="details">
-          <span className="category">{data.category}</span>
-          <span className="info">{data.info}</span>
-          <span className="district">{data.district}</span>
-          <span className="price">{data.price} euroa</span>
-          <span className="contact">{data.contact}</span>
-        </div>
-      )
-
+        return (
+          <Piletti title={data.title} pvm={mikaPaiva} klo={mihinAikaan} 
+          category={data.category} info={data.info} district={data.district} price={data.price} 
+          contact={data.contact} key={data.id}></Piletti>
+    );
+  });
       return (
-        <div className="yksiTapahtuma" onClick={this.toggleHidden.bind(this)}>
-          <span className="title">{data.title}</span>
-          <span className="pvm">{mikaPaiva}</span>
-          <span className="klo">{mihinAikaan}</span>
-          {!this.state.isHidden && <Lisatiedot />}
-        </div>
+        <div>{tapahtumalista}</div>
       );
-    });
-    return <div> {tapahtumalista} </div>;
   }
 }
 

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 
 class uusipiletti extends Component {
   state = {
-    category: "",
+    category: "Musiikki",
     contact: "",
     district: "",
     info: "",
@@ -12,44 +12,76 @@ class uusipiletti extends Component {
     klo: ""
   };
 
-  handleTitleChange = e => {
-    this.setState({ title: e.target.value });
+  handleTitleChange = event => {
+    this.setState({ title: event.target.value });
   };
 
-  handleCategoryChange = e => {
-    this.setState({ category: e.target.value });
+  handleCategoryChange = event => {
+    this.setState({ category: event.target.value });
   };
 
-  handlePriceChange = e => {
-    this.setState({ price: e.target.value });
+  handlePriceChange = event => {
+    this.setState({ price: event.target.value });
   };
 
-  handleInfoChange = e => {
-    this.setState({ info: e.target.value });
+  handleInfoChange = event => {
+    this.setState({ info: event.target.value });
   };
 
-  handlePvmChange = e => {
-    this.setState({ pvm: e.target.value });
+  handlePvmChange = event => {
+    this.setState({ paivays: event.target.value });
   };
 
-  handleKloChange = e => {
-    this.setState({ klo: e.target.value });
+  handleKloChange = event => {
+    this.setState({ klo: event.target.value });
   };
 
-  handleContactChange = e => {
-    this.setState({ contact: e.target.value });
+  handleContactChange = event => {
+    this.setState({ contact: event.target.value });
   };
+
+  handleDistrictChange = event => {
+    this.setState({ district: event.target.value });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+
+    const uusiPiletti = {
+      category: this.state.category,
+      contact: this.state.contact,
+      district: this.state.district,
+      info: this.state.info,
+      price: this.state.price,
+      title: this.state.title,
+      paivays: this.state.paivays,
+      klo: this.state.klo + ":00",
+    };
+
+    fetch('http://localhost:8080/uusi/', {
+      method: "POST",
+      body: JSON.stringify(uusiPiletti),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    }).then(res => {
+      res.json().then(data => {
+        console.log("Got new ticket!");
+      })
+    })
+  }
 
   render() {
     return (
       <div className={"uusiPiletti"}>
         <form className="upiletti" onSubmit={this.handleSubmit}>
-          <header>Piletin tiedot</header>
+          <header>Laita pilettisi myyntiin!</header>
           <table>
             <tbody>
               <tr>
                 <td>
-                  <label htmlFor="form_uusititle">Otsikko</label>
+                  <label htmlFor="title">Otsikko</label>
                   <input
                     name="title"
                     id="title"
@@ -60,28 +92,28 @@ class uusipiletti extends Component {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="form_kategoria">Kategoria</label>
+                  <label htmlFor="category">Kategoria</label>
                 </td>
                 <td>
                   {" "}
                   <select
-                    name="kategoria"
-                    id="kategoria"
-                    onChange={this.handleKategoriaChange}
+                    name="category"
+                    id="category"
+                    onChange={this.handleCategoryChange}
                   >
-                    <option value="Musiikki">Musiikki</option>
-                    <option value="Urheilu">Urheilu</option>
-                    <option value="Kulttuuri">Kulttuuri</option>
-                    <option value="Muu">Muu</option>
+                    <option value="musiikki">Musiikki</option>
+                    <option value="urheilu">Urheilu</option>
+                    <option value="kulttuuri">Kulttuuri</option>
+                    <option value="muu">Muu</option>
                   </select>
                 </td>
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="form_uusihinta">Hinta</label>
+                  <label htmlFor="price">Hinta</label>
                   <input
-                    name="hinta"
-                    id="hinta"
+                    name="price"
+                    id="price"
                     type="numeral"
                     onChange={this.handlePriceChange}
                   />
@@ -89,7 +121,7 @@ class uusipiletti extends Component {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="form_uusiinfo">Info</label>
+                  <label htmlFor="info">Info</label>
                   <input
                     name="info"
                     id="info"
@@ -100,10 +132,10 @@ class uusipiletti extends Component {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="form_uusipvm">Päivämäärä</label>
+                  <label htmlFor="paivays">Päivämäärä</label>
                   <input
-                    name="pvm"
-                    id="pvm"
+                    name="paivays"
+                    id="paivays"
                     type="date"
                     onChange={this.handlePvmChange}
                   />
@@ -111,7 +143,7 @@ class uusipiletti extends Component {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="form_uusiklo">Kellonaika</label>
+                  <label htmlFor="klo">Kellonaika</label>
                   <input
                     name="klo"
                     id="klo"
@@ -122,7 +154,7 @@ class uusipiletti extends Component {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="form_uusikontakti">Yhteystiedot</label>
+                  <label htmlFor="contact">Yhteystiedot</label>
                   <input
                     name="contact"
                     id="contact"
@@ -131,8 +163,20 @@ class uusipiletti extends Component {
                   />
                 </td>
               </tr>
+              <tr>
+                <td>
+                  <label htmlFor="district">Lipun sijainti (kaupunginosa)</label>
+                  <input
+                    name="district"
+                    id="district"
+                    type="text"
+                    onChange={this.handleDistrictChange}
+                  />
+                </td>
+              </tr>
             </tbody>
           </table>
+            <button type="submit">Tallenna myynti-ilmoitus</button>
         </form>
       </div>
     );
