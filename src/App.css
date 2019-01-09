@@ -52,7 +52,16 @@
   font-family: 'Carter One', cursive;
   font-size: calc(30px + 2vmin);
   color: #f80002;
-  text-shadow: 4px 4px black
+  text-shadow: 4px 4px black;
+  text-align: center;
+}
+
+.apinNimiPieni {
+  font-family: 'Carter One', cursive;
+  font-size: calc(20px + 2vmin);
+  color: #f80002;
+  text-shadow: 4px 4px black;
+  text-align: center;
 }
 
 .uusiPiletti {
@@ -61,4 +70,60 @@
 
 .yksiTapahtuma {
   border: solid 2 px black;
+}
+
+/* LINKIT */
+
+.etusivulinkki {
+  font-family: 'Carter One', cursive;
+  color: black;
+  padding-right: 10px;
+  padding-left: 10px;
+  border: solid 2 px black;
+}
+
+.uusilinkki {
+  font-family: 'Carter One', cursive;
+  color: black;
+  padding-right: 10px;
+  padding-left: 10px;
+  border: solid 2 px black;
+}
+
+/*kaikista linkeistä alleviivaus pois*/
+nav a {
+  text-decoration: none;
+ }
+
+/* UUSI PILETTI */ 
+
+.upiletti {
+    padding: remy(32px);
+    margin-top: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: remy(380px);
+    border: solid 2 px black;
+ }
+
+label {
+  font-family: 'Carter One', cursive;
+  color: black;
+  font-size: .75rem;
+  touch-action: manipulation;
+  width: 130%;
+ }
+
+input {
+ width: 130%;
+ font-size: 1rem;
+}
+
+select {
+  width: 45%
+}
+
+/* EI TOIMI */
+.tallennusnappi {
+  text-align: center;
 }

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Linkit from './linkit';
 
 class uusipiletti extends Component {
   state = {
@@ -73,10 +74,25 @@ class uusipiletti extends Component {
   }
 
   render() {
+    const {info, contact, category, district, title, price, klo, paivays} = this.state;
+    const isEnabled =
+      category.length > 0 &&
+      district.length > 0 &&
+      title.length > 0 &&
+      price.length > 0 &&
+      klo.length > 0 &&
+      paivays.length > 0 &&
+      info.length > 0 &&
+      contact.length > 0;
     return (
       <div className={"uusiPiletti"}>
+        <Linkit/>
+
+        <div className="apinNimiPieni">
+          <h2>PILETTI</h2>
+        </div>
+
         <form className="upiletti" onSubmit={this.handleSubmit}>
-          <header>Laita pilettisi myyntiin!</header>
           <table>
             <tbody>
               <tr>
@@ -165,18 +181,74 @@ class uusipiletti extends Component {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="district">Lipun sijainti (kaupunginosa)</label>
-                  <input
+                  <label htmlFor="district">Missä lippu?</label>
+                </td>
+                <td>
+                  {" "}
+                  <select
                     name="district"
                     id="district"
-                    type="text"
                     onChange={this.handleDistrictChange}
-                  />
+                  >
+                  <option value="Etu-Töölö‎">Etu-Töölö‎</option>
+                  <option value="Haaga">Haaga‎</option>
+                  <option value="	Hermanni‎">Hermanni‎</option>
+                  <option value="	Herttoniemi">Herttoniemi‎</option>
+                  <option value="	Kaarela‎">Kaarela</option>
+                  <option value="	Kaartinkaupunki‎">Kaartinkaupunki</option>
+                  <option value="	Kaivopuisto‎">Kaivopuisto</option>
+                  <option value="	Kalasatama‎">Kalasatama</option>
+                  <option value="	Kallio‎">Kallio</option>
+                  <option value="	Kamppi‎">Kamppi</option>
+                  <option value="	Katajanokka‎">Katajanokka</option>
+                  <option value="	Kluuvi‎">Kluuvi</option>
+                  <option value="	Konala‎">Konala</option>
+                  <option value="	Koskela‎">Koskela</option>
+                  <option value="	Kruununhaka‎	">	Kruununhaka‎	</option>
+                  <option value="	Kulosaari‎	">	Kulosaari‎	</option>
+                  <option value="	Kumpula‎	">	Kumpula‎	</option>
+                  <option value="	Käpylä‎	">	Käpylä‎	</option>
+                  <option value="	Laajasalo‎	">	Laajasalo‎	</option>
+                  <option value="	Laakso‎	">	Laakso‎	</option>
+                  <option value="	Lauttasaari‎	">	Lauttasaari‎	</option>
+                  <option value="	Länsisatama‎	">	Länsisatama‎	</option>
+                  <option value="	Malmi‎	">	Malmi‎	</option>
+                  <option value="	Meilahti‎	">	Meilahti‎	</option>
+                  <option value="	Mellunkylä‎	">	Mellunkylä‎	</option>
+                  <option value="	Munkkiniemi‎	">	Munkkiniemi‎	</option>
+                  <option value="	Mustikkamaa–Korkeasaari‎	">	Mustikkamaa–Korkeasaari‎	</option>
+                  <option value="	Oulunkylä‎	">	Oulunkylä‎	</option>
+                  <option value="	Pakila‎	">	Pakila‎	</option>
+                  <option value="	Pasila‎	">	Pasila‎	</option>
+                  <option value="	Pitäjänmäki‎	">	Pitäjänmäki‎	</option>
+                  <option value="	Pukinmäki‎	">	Pukinmäki‎	</option>
+                  <option value="	Punavuori‎	">	Punavuori‎	</option>
+                  <option value="	Ruskeasuo‎	">	Ruskeasuo‎	</option>
+                  <option value="	Santahamina‎	">	Santahamina‎	</option>
+                  <option value="	Suurmetsä‎	">	Suurmetsä‎	</option>
+                  <option value="	Suutarila‎	">	Suutarila‎	</option>
+                  <option value="	Sörnäinen‎	">	Sörnäinen‎	</option>
+                  <option value="	Taka-Töölö‎	">	Taka-Töölö‎	</option>
+                  <option value="	Tammisalo‎	">	Tammisalo‎	</option>
+                  <option value="	Tapaninkylä‎	">	Tapaninkylä‎	</option>
+                  <option value="	Toukola‎	">	Toukola‎	</option>
+                  <option value="	Tuomarinkylä‎	">	Tuomarinkylä‎	</option>
+                  <option value="	Töölö‎	">	Töölö‎	</option>
+                  <option value="	Ulkosaaret‎	">	Ulkosaaret‎	</option>
+                  <option value="	Ullanlinna‎	">	Ullanlinna‎	</option>
+                  <option value="	Ultuna‎	">	Ultuna‎	</option>
+                  <option value="	Vallila‎	">	Vallila‎	</option>
+                  <option value="	Vanhakaupunki‎	">	Vanhakaupunki‎	</option>
+                  <option value="	Vartiokylä‎	">	Vartiokylä‎	</option>
+                  <option value="	Vartiosaari‎	">	Vartiosaari‎	</option>
+                  <option value="	Viikki‎	">	Viikki‎	</option>
+                  <option value="	Vuosaari‎	">	Vuosaari‎	</option>
+                  </select>
                 </td>
               </tr>
             </tbody>
           </table>
-            <button type="submit">Tallenna myynti-ilmoitus</button>
+            <button className="tallennusnappi" disabled={!isEnabled} type="submit">Tallenna myynti-ilmoitus</button>
         </form>
       </div>
     );
