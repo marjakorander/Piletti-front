@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import Pilettidata from "./pilettidata";
+import KaikkiPiletitData from './kaikkiPiletitData';
 import Linkit from "./linkit";
 
-class Etusivu extends Component {
+class kaikkiPiletitEtusivu extends Component {
   render() {
     return (
       <div className="etusivu">
@@ -13,11 +13,11 @@ class Etusivu extends Component {
           <h1>PILETTI</h1>
         </div>
         <div className="ekat">
-          <Pilettidata />
+          <KaikkiPiletitData />
         </div>
       </div>
     );
   }
 }
 
-export default Etusivu;
+export default kaikkiPiletitEtusivu;

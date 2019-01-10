@@ -1,0 +1,6 @@
+  // filtteroi = () => {
+  //   fetch("/kategoria/" + this.props.categoryFilter)
+  //     .then(response => response.json())
+  //     .then(data => this.setState({ data }));
+  //   console.log("Filtteri päällä");
+  // };

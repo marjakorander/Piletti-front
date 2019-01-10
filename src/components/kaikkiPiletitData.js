@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import Piletti from './piletti';
+import Piletti from "./piletti";
 
-class Pilettidata extends Component {
+class KaikkiPiletitData extends Component {
   constructor() {
     super();
-    this.state = { 
-      data: []}
+    this.state = {
+      data: []
+    };
   }
 
   componentDidMount() {
@@ -14,11 +15,11 @@ class Pilettidata extends Component {
   }
 
   haePiletti = () => {
-    fetch("/sortatutViisi")
+    fetch("/sortatutTulevat")
       .then(response => response.json())
       .then(data => this.setState({ data }));
     console.log("Matsku saatu");
-  }
+  };
 
   render() {
     const tapahtumalista = this.state.data.map(function(data) {
@@ -28,20 +29,25 @@ class Pilettidata extends Component {
       var mikaPaiva = new Date(millisekunnit).toLocaleDateString("fi");
 
       var kellonaika = data.klo;
-      var mihinAikaan = kellonaika.substr(0,5);
+      var mihinAikaan = kellonaika.substr(0, 5);
 
-        return (
-          <div>
-            <Piletti title={data.title} pvm={mikaPaiva} klo={mihinAikaan} 
-            category={data.category} info={data.info} district={data.district} price={data.price} 
-            contact={data.contact} key={data.id}></Piletti>
-          </div>
-    );
-  });
       return (
-          <div>{tapahtumalista}</div>
+        <div>
+          <Piletti
+            title={data.title}
+            pvm={mikaPaiva}
+            klo={mihinAikaan}
+            category={data.category}
+            info={data.info}
+            district={data.district}
+            price={data.price}
+            contact={data.contact}
+            key={data.id}
+          />
+        </div>
       );
+    });
+    return <div>{tapahtumalista}</div>;
   }
 }
-
-export default Pilettidata;
+export default KaikkiPiletitData;

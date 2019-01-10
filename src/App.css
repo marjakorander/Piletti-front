@@ -7,6 +7,15 @@
   justify-content: center;
 }
 
+.kaikkiPiletit {
+  font-size: calc(20px);
+  text-align: center;
+  color: black;
+  background-color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .ekat {
   text-align: center;
   color: black;
@@ -61,28 +70,18 @@
   font-size: calc(20px + 2vmin);
   color: #f80002;
   text-shadow: 4px 4px black;
-  text-align: center;
+  text-align: left;
 }
 
 .uusiPiletti {
   padding-top: 10px;
 }
 
-.yksiTapahtuma {
-  border: solid 2 px black;
-}
-
 /* LINKIT */
 
-.etusivulinkki {
-  font-family: 'Carter One', cursive;
-  color: black;
-  padding-right: 10px;
-  padding-left: 10px;
-  border: solid 2 px black;
-}
-
-.uusilinkki {
+.etusivulinkki, 
+.uusilinkki,
+.kaikkilinkki {
   font-family: 'Carter One', cursive;
   color: black;
   padding-right: 10px;
@@ -126,4 +125,8 @@ select {
 /* EI TOIMI */
 .tallennusnappi {
   text-align: center;
+}
+
+.filtteri {
+  padding: 10px;
 }

@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import Linkit from './linkit';
 
-class uusipiletti extends Component {
+class Uusipiletti extends Component {
   state = {
     category: "Musiikki",
     contact: "",
-    district: "",
+    district: "Etu-Töölö",
     info: "",
     price: "",
     title: "",
@@ -83,15 +83,13 @@ class uusipiletti extends Component {
       klo.length > 0 &&
       paivays.length > 0 &&
       info.length > 0 &&
-      contact.length > 0;
+      contact.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,}$/);
     return (
       <div className={"uusiPiletti"}>
         <Linkit/>
-
         <div className="apinNimiPieni">
           <h2>PILETTI</h2>
         </div>
-
         <form className="upiletti" onSubmit={this.handleSubmit}>
           <table>
             <tbody>
@@ -102,6 +100,7 @@ class uusipiletti extends Component {
                     name="title"
                     id="title"
                     type="text"
+                    maxLength={255}
                     onChange={this.handleTitleChange}
                   />
                 </td>
@@ -126,7 +125,7 @@ class uusipiletti extends Component {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="price">Hinta</label>
+                  <label htmlFor="price">Hinta (euroa)</label>
                   <input
                     name="price"
                     id="price"
@@ -142,6 +141,7 @@ class uusipiletti extends Component {
                     name="info"
                     id="info"
                     type="text"
+                    maxLength={255}
                     onChange={this.handleInfoChange}
                   />
                 </td>
@@ -170,11 +170,12 @@ class uusipiletti extends Component {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="contact">Yhteystiedot</label>
+                  <label htmlFor="contact">Sähköpostiosoite</label>
                   <input
                     name="contact"
                     id="contact"
                     type="text"
+                    maxLength={255}
                     onChange={this.handleContactChange}
                   />
                 </td>
@@ -190,59 +191,59 @@ class uusipiletti extends Component {
                     id="district"
                     onChange={this.handleDistrictChange}
                   >
-                  <option value="Etu-Töölö‎">Etu-Töölö‎</option>
-                  <option value="Haaga">Haaga‎</option>
-                  <option value="	Hermanni‎">Hermanni‎</option>
-                  <option value="	Herttoniemi">Herttoniemi‎</option>
-                  <option value="	Kaarela‎">Kaarela</option>
-                  <option value="	Kaartinkaupunki‎">Kaartinkaupunki</option>
-                  <option value="	Kaivopuisto‎">Kaivopuisto</option>
-                  <option value="	Kalasatama‎">Kalasatama</option>
-                  <option value="	Kallio‎">Kallio</option>
-                  <option value="	Kamppi‎">Kamppi</option>
-                  <option value="	Katajanokka‎">Katajanokka</option>
-                  <option value="	Kluuvi‎">Kluuvi</option>
-                  <option value="	Konala‎">Konala</option>
-                  <option value="	Koskela‎">Koskela</option>
-                  <option value="	Kruununhaka‎	">	Kruununhaka‎	</option>
-                  <option value="	Kulosaari‎	">	Kulosaari‎	</option>
-                  <option value="	Kumpula‎	">	Kumpula‎	</option>
-                  <option value="	Käpylä‎	">	Käpylä‎	</option>
-                  <option value="	Laajasalo‎	">	Laajasalo‎	</option>
-                  <option value="	Laakso‎	">	Laakso‎	</option>
-                  <option value="	Lauttasaari‎	">	Lauttasaari‎	</option>
-                  <option value="	Länsisatama‎	">	Länsisatama‎	</option>
-                  <option value="	Malmi‎	">	Malmi‎	</option>
-                  <option value="	Meilahti‎	">	Meilahti‎	</option>
-                  <option value="	Mellunkylä‎	">	Mellunkylä‎	</option>
-                  <option value="	Munkkiniemi‎	">	Munkkiniemi‎	</option>
-                  <option value="	Mustikkamaa–Korkeasaari‎	">	Mustikkamaa–Korkeasaari‎	</option>
-                  <option value="	Oulunkylä‎	">	Oulunkylä‎	</option>
-                  <option value="	Pakila‎	">	Pakila‎	</option>
-                  <option value="	Pasila‎	">	Pasila‎	</option>
-                  <option value="	Pitäjänmäki‎	">	Pitäjänmäki‎	</option>
-                  <option value="	Pukinmäki‎	">	Pukinmäki‎	</option>
-                  <option value="	Punavuori‎	">	Punavuori‎	</option>
-                  <option value="	Ruskeasuo‎	">	Ruskeasuo‎	</option>
-                  <option value="	Santahamina‎	">	Santahamina‎	</option>
-                  <option value="	Suurmetsä‎	">	Suurmetsä‎	</option>
-                  <option value="	Suutarila‎	">	Suutarila‎	</option>
-                  <option value="	Sörnäinen‎	">	Sörnäinen‎	</option>
-                  <option value="	Taka-Töölö‎	">	Taka-Töölö‎	</option>
-                  <option value="	Tammisalo‎	">	Tammisalo‎	</option>
-                  <option value="	Tapaninkylä‎	">	Tapaninkylä‎	</option>
-                  <option value="	Toukola‎	">	Toukola‎	</option>
-                  <option value="	Tuomarinkylä‎	">	Tuomarinkylä‎	</option>
-                  <option value="	Töölö‎	">	Töölö‎	</option>
-                  <option value="	Ulkosaaret‎	">	Ulkosaaret‎	</option>
-                  <option value="	Ullanlinna‎	">	Ullanlinna‎	</option>
-                  <option value="	Ultuna‎	">	Ultuna‎	</option>
-                  <option value="	Vallila‎	">	Vallila‎	</option>
-                  <option value="	Vanhakaupunki‎	">	Vanhakaupunki‎	</option>
-                  <option value="	Vartiokylä‎	">	Vartiokylä‎	</option>
-                  <option value="	Vartiosaari‎	">	Vartiosaari‎	</option>
-                  <option value="	Viikki‎	">	Viikki‎	</option>
-                  <option value="	Vuosaari‎	">	Vuosaari‎	</option>
+                  <option value="Etu-Töölö‎">Etu-Töölö</option>
+                  <option value="Haaga">Haaga</option>
+                  <option value="Hermanni‎">Hermanni</option>
+                  <option value="Herttoniemi">Herttoniemi</option>
+                  <option value="Kaarela‎">Kaarela</option>
+                  <option value="Kaartinkaupunki‎">Kaartinkaupunki</option>
+                  <option value="Kaivopuisto‎">Kaivopuisto</option>
+                  <option value="Kalasatama‎">Kalasatama</option>
+                  <option value="Kallio‎">Kallio</option>
+                  <option value="Kamppi‎">Kamppi</option>
+                  <option value="Katajanokka‎">Katajanokka</option>
+                  <option value="Kluuvi‎">Kluuvi</option>
+                  <option value="Konala‎">Konala</option>
+                  <option value="Koskela‎">Koskela</option>
+                  <option value="Kruununhaka">Kruununhaka‎</option>
+                  <option value="Kulosaari‎">Kulosaari</option>
+                  <option value="Kumpula‎">Kumpula‎</option>
+                  <option value="Käpylä‎	">Käpylä‎</option>
+                  <option value="Laajasalo‎">Laajasalo‎</option>
+                  <option value="Laakso‎">Laakso‎</option>
+                  <option value="Lauttasaari‎">Lauttasaari‎</option>
+                  <option value="Länsisatama‎">Länsisatama‎</option>
+                  <option value="Malmi‎">Malmi‎</option>
+                  <option value="Meilahti‎">Meilahti‎</option>
+                  <option value="Mellunkylä‎">Mellunkylä</option>
+                  <option value="Munkkiniemi‎">Munkkiniemi‎</option>
+                  <option value="Mustikkamaa–Korkeasaari‎">Mustikkamaa–Korkeasaari‎</option>
+                  <option value="Oulunkylä‎">Oulunkylä‎</option>
+                  <option value="Pakila‎">Pakila‎</option>
+                  <option value="Pasila‎">Pasila‎</option>
+                  <option value="Pitäjänmäki‎">Pitäjänmäki</option>
+                  <option value="Pukinmäki‎">Pukinmäki</option>
+                  <option value="Punavuori‎">Punavuori</option>
+                  <option value="Ruskeasuo‎">Ruskeasuo</option>
+                  <option value="Santahamina‎">Santahamina</option>
+                  <option value="Suurmetsä‎">Suurmetsä</option>
+                  <option value="Suutarila‎">Suutarila</option>
+                  <option value="Sörnäinen‎">Sörnäinen‎</option>
+                  <option value="Taka-Töölö‎">Taka-Töölö</option>
+                  <option value="Tammisalo‎">Tammisalo</option>
+                  <option value="Tapaninkylä‎">Tapaninkylä</option>
+                  <option value="Toukola‎">Toukola</option>
+                  <option value="Tuomarinkylä‎">Tuomarinkylä</option>
+                  <option value="Töölö‎">Töölö</option>
+                  <option value="Ulkosaaret‎">Ulkosaaret</option>
+                  <option value="Ullanlinna‎">Ullanlinna</option>
+                  <option value="Ultuna‎">Ultuna</option>
+                  <option value="Vallila‎">Vallila</option>
+                  <option value="Vanhakaupunki‎">Vanhakaupunki</option>
+                  <option value="Vartiokylä‎">Vartiokylä</option>
+                  <option value="Vartiosaari‎">Vartiosaari</option>
+                  <option value="Viikki‎">Viikki</option>
+                  <option value="Vuosaari‎">Vuosaari</option>
                   </select>
                 </td>
               </tr>
@@ -255,4 +256,4 @@ class uusipiletti extends Component {
   }
 }
 
-export default uusipiletti;
+export default Uusipiletti;

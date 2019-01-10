@@ -6,6 +6,7 @@ const Linkit = () => (
         <nav className="hederi">
             <Link className="etusivulinkki" to='/'>Etusivu</Link>
             <Link className="uusilinkki" to='/uusi'>Myy pilettisi</Link>
+            <Link className="kaikkilinkki" to='/kaikki'>Näytä kaikki piletit</Link>
         </nav>
     </header>
 )
