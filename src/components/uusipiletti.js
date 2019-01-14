@@ -129,7 +129,7 @@ class Uusipiletti extends Component {
                   <input
                     name="price"
                     id="price"
-                    type="numeral"
+                    type="number"
                     onChange={this.handlePriceChange}
                   />
                 </td>
@@ -218,7 +218,7 @@ class Uusipiletti extends Component {
                   <option value="Mellunkylä‎">Mellunkylä</option>
                   <option value="Munkkiniemi‎">Munkkiniemi‎</option>
                   <option value="Mustikkamaa–Korkeasaari‎">Mustikkamaa–Korkeasaari‎</option>
-                  <option value="Oulunkylä‎">Oulunkylä‎</option>
+                  <option value="Oulunkylä‎">Oulunkylä</option>
                   <option value="Pakila‎">Pakila‎</option>
                   <option value="Pasila‎">Pasila‎</option>
                   <option value="Pitäjänmäki‎">Pitäjänmäki</option>
@@ -249,7 +249,7 @@ class Uusipiletti extends Component {
               </tr>
             </tbody>
           </table>
-            <button className="tallennusnappi" disabled={!isEnabled} type="submit">Tallenna myynti-ilmoitus</button>
+            <button className="tallennusnappi" disabled={!isEnabled} type="submit">Tallenna ilmoitus</button>
         </form>
       </div>
     );

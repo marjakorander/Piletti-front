@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Piletti from "./piletti";
+import KaikkiPiletti from "./kaikkiPiletti";
 
 class KaikkiPiletitData extends Component {
   constructor() {
@@ -11,7 +11,13 @@ class KaikkiPiletitData extends Component {
 
   componentDidMount() {
     console.log("Toimii");
+    console.log("Data " + this.props.filterCategory);
+    console.log("Data " + this.props.isFiltered);
     this.haePiletti();
+  }
+
+  componentWillReceiveProps(){
+    this.filtteroi();
   }
 
   haePiletti = () => {
@@ -19,6 +25,13 @@ class KaikkiPiletitData extends Component {
       .then(response => response.json())
       .then(data => this.setState({ data }));
     console.log("Matsku saatu");
+  };
+
+  filtteroi = () => {
+    fetch("/kategoria/" + this.props.filterCategory.charAt(0).toUpperCase() + this.props.filterCategory.slice(1))
+      .then(response => response.json())
+      .then(data => this.setState({ data }));
+    console.log("Filtteröity");  
   };
 
   render() {
@@ -33,7 +46,7 @@ class KaikkiPiletitData extends Component {
 
       return (
         <div>
-          <Piletti
+          <KaikkiPiletti
             title={data.title}
             pvm={mikaPaiva}
             klo={mihinAikaan}

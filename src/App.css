@@ -25,7 +25,16 @@
   margin-right: auto;
 }
 
-.yksiTapahtuma {
+.kaikki {
+  text-align: center;
+  color: black;
+  font-size: calc(12px + 2vmin);
+  background-color: rgb(255, 255, 255);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.yksiTapahtuma, .yksiTapahtumaKaikki {
   border: solid 2px black;
 }
 
@@ -129,4 +138,5 @@ select {
 
 .filtteri {
   padding: 10px;
+  font-size: .50rem;
 }
