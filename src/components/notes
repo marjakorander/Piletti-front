@@ -4,3 +4,33 @@
   //     .then(data => this.setState({ data }));
   //   console.log("Filtteri päällä");
   // };
+
+  KAIKKIPILETITETUSIVU
+
+   // handleSubmit = event => {
+  //   event.preventDefault();
+  //   this.setState({ isFiltered: true, removeFiltering: false }, () => {
+  //     console.log("Etusivu, onko filtteri päällä:" + this.state.isFiltered);
+  //   });
+  // };
+
+  // showAll = event => {
+  //   event.preventDefault();
+  //   this.setState({ removeFiltering: true, isFiltered: false }, () => {
+  //     console.log("Etusivu, filtteröinti pois:" + this.state.removeFiltering);
+  //   });
+  // };
+
+            {/* <div>
+            <button
+              onClick={this.showAll}
+              className="poistafiltteröinti"
+              type="click"
+            >
+              Näytä kaikki
+            </button>
+          </div> */}
+
+            {/* <button className="tallennusnappi" type="submit">
+              Hae
+            </button> */}          

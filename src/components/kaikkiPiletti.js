@@ -25,11 +25,11 @@ class KaikkiPiletti extends Component {
         </div>)
 
     return (
-        <div className="yksiTapahtumaKaikki" onClick={this.toggleHidden.bind(this)}>
-        <span className="title">{this.props.title}</span>
-        <span className="pvm">{this.props.pvm}</span>
-        <span className="klo">{this.props.klo}</span>
-        {!this.state.isHidden && <Lisatiedot />}
+        <div className="yksiTapahtumaKaikki" key={this.props.id} onClick={this.toggleHidden.bind(this)}>
+          <span className="title">{this.props.title}</span>
+          <span className="pvm">{this.props.pvm}</span>
+          <span className="klo">{this.props.klo}</span>
+          {!this.state.isHidden && <Lisatiedot />}
         </div>
     )
   }

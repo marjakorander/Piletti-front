@@ -25,11 +25,11 @@ class Piletti extends Component {
         </div>)
 
     return (
-        <div className="yksiTapahtuma" onClick={this.toggleHidden.bind(this)}>
-        <span className="title">{this.props.title}</span>
-        <span className="pvm">{this.props.pvm}</span>
-        <span className="klo">{this.props.klo}</span>
-        {!this.state.isHidden && <Lisatiedot />}
+          <div className="yksiTapahtuma" key={this.props.id} onClick={this.toggleHidden.bind(this)}>
+            <span className="title">{this.props.title}</span>
+            <span className="pvm">{this.props.pvm}</span>
+            <span className="klo">{this.props.klo}</span>
+            {!this.state.isHidden && <Lisatiedot />}
         </div>
     )
   }

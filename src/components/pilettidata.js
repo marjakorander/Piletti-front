@@ -31,10 +31,10 @@ class Pilettidata extends Component {
       var mihinAikaan = kellonaika.substr(0,5);
 
         return (
-          <div>
+          <div key={data.id}>
             <Piletti title={data.title} pvm={mikaPaiva} klo={mihinAikaan} 
             category={data.category} info={data.info} district={data.district} price={data.price} 
-            contact={data.contact} key={data.id}></Piletti>
+            contact={data.contact}></Piletti>
           </div>
     );
   });
