@@ -7,7 +7,6 @@ class kaikkiPiletitEtusivu extends Component {
     super();
     this.state = {
       filterCategory: "",
-      // isFiltered: false,
     };
   }
 
@@ -16,19 +15,6 @@ class kaikkiPiletitEtusivu extends Component {
       this.setState({ filterCategory: event.target.value}, () => {
         console.log("Handle filter change: " + this.state.filterCategory);
       })};      
-
-//   handleFilterChange = event => {
-//     event.preventDefault();
-//     if (this.state.filterCategory === "sortatutTulevat") {
-//       this.setState({ isFiltered: false}, () => {
-//       console.log("Etusivu, Näytä kaikki, kategoria:" + this.state.filterCategory);
-//       console.log("Etusivu, Näytä kaikki, onko filtteri päällä:" + this.state.isFiltered);
-//     })} else {
-//       this.setState({ filterCategory: event.target.value, isFiltered: true}, () => {
-//       console.log("Etusivu, kategoria:" + this.state.filterCategory);
-//       console.log("Etusivu, onko filtteri päällä:" + this.state.isFiltered);
-//   })};
-// };
 
   render() {
     return (
@@ -57,9 +43,7 @@ class kaikkiPiletitEtusivu extends Component {
         </div>
         <div className="kaikki">
           <KaikkiPiletitData
-            isFiltered={this.state.isFiltered}
             filterCategory={this.state.filterCategory}
-            // removeFiltering={this.state.removeFiltering}
           />
         </div>
       </div>

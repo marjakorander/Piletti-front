@@ -12,7 +12,6 @@ class KaikkiPiletitData extends Component {
   componentDidMount() {
     console.log("Toimii");
     console.log("Data, filtterin kategoria: " + this.props.filterCategory);
-    // console.log("Data, onko filtteri päällä: " + this.props.isFiltered);
     this.haePiletti();
   }
 
@@ -20,25 +19,13 @@ class KaikkiPiletitData extends Component {
   componentDidUpdate(prevProps) {
     if (this.props.filterCategory !== prevProps.filterCategory && this.props.filterCategory !== "sortatutTulevat") {
       console.log("Filtteröinti")
-      this.filtteroi(this.props);
+      this.filtteroi();
     } 
     if (this.props.filterCategory !== prevProps.filterCategory && this.props.filterCategory === "sortatutTulevat") {
-      console.log("Kaikkien näyttäminen")
-      this.haePiletti(this.props.filterCategory);
+      console.log("Näytetään kaikki kategoriat")
+      this.haePiletti();
     }
   }
-
-  // componentDidUpdate(prevProps) {
-  //   if (this.props.isFiltered !== prevProps.isFiltered && this.props.filterCategory === "sortatutTulevat") {
-  //     this.haePiletti(this.props.isFiltered);
-  //   }
-  //   if (this.props.isFiltered !== prevProps.isFiltered && this.props.filterCategory !== "sortatutTulevat") {
-  //     this.filtteroi(this.props.isFiltered);
-  //   }
-  //   if (this.props.filterCategory !== prevProps.filterCategory && this.props.isFiltered ) {
-  //     this.filtteroi(this.props.isFiltered);
-  //   }
-  // }
 
   // haetaan kaikki piletit
   haePiletti = () => {
