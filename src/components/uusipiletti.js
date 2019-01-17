@@ -14,7 +14,7 @@ class Uusipiletti extends Component {
       title: "",
       paivays: "",
       klo: "",
-      generatedcode: "",
+      generatedCode: "",
       showCode: false
     };
   }
@@ -54,8 +54,8 @@ class Uusipiletti extends Component {
 
   generateCode = () => {
     const random = Math.floor(Math.random() * 99999 + 10000);
-    this.setState({ generatedcode: random }, () => {
-      console.log("Generated code: " + this.state.generatedcode);
+    this.setState({ generatedCode: random }, () => {
+      console.log("Generated code: " + this.state.generatedCode);
     });
   };
 
@@ -79,10 +79,10 @@ class Uusipiletti extends Component {
       title: this.state.title,
       paivays: this.state.paivays,
       klo: this.state.klo + ":00",
-      generatedcode: this.state.generatedcode
+      generatedCode: this.state.generatedCode
     };
 
-    console.log("After uusiPiletti: " + this.state.generatedcode);
+    console.log("After uusiPiletti: " + this.state.generatedCode);
     console.log("After uusiPiletti: " + this.state.category);
     console.log("After uusiPiletti: " + this.state.showCode);
 
@@ -95,7 +95,7 @@ class Uusipiletti extends Component {
       }
     }).then(res => {
       res.json().then(data => {
-        console.log("Post: " + this.state.generatedcode);
+        console.log("Post: " + this.state.generatedCode);
         console.log("Got new ticket!");
         console.log("After post: " + this.state.showCode)
       });
@@ -302,7 +302,7 @@ class Uusipiletti extends Component {
           </button>
         </form>
         <div>
-          <UusiPilettiKoodi showCode={this.state.showCode} generatedcode={this.state.generatedcode}/>
+          <UusiPilettiKoodi showCode={this.state.showCode} generatedCode={this.state.generatedCode}/>
         </div>
       </div>
     );
