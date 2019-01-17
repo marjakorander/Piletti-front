@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Linkit from "./linkit";
+import UusiPilettiKoodi from "./uusiPilettiKoodi";
 
 class Uusipiletti extends Component {
   constructor() {
@@ -13,7 +14,8 @@ class Uusipiletti extends Component {
       title: "",
       paivays: "",
       klo: "",
-      generatedcode: ""
+      generatedCode: "",
+      showCode: false
     };
   }
 
@@ -52,13 +54,21 @@ class Uusipiletti extends Component {
 
   generateCode = () => {
     const random = Math.floor(Math.random() * 99999 + 10000);
-    this.setState({ generatedcode: random }, () => {
-      console.log("Generated code: " + this.state.generatedcode);
+    this.setState({ generatedCode: random }, () => {
+      console.log("Generated code: " + this.state.generatedCode);
     });
   };
 
+  showCode = () => {
+    this.setState({showCode: true}, () => {
+      console.log("Show code: " + this.state.showCode);
+    });
+  }
+
   handleSubmit = event => {
     event.preventDefault();
+
+    this.showCode();
 
     const uusiPiletti = {
       category: this.state.category,
@@ -69,11 +79,12 @@ class Uusipiletti extends Component {
       title: this.state.title,
       paivays: this.state.paivays,
       klo: this.state.klo + ":00",
-      generatedcode: this.state.generatedcode
+      generatedCode: this.state.generatedCode
     };
 
-    console.log("After uusiPiletti: " + this.state.generatedcode);
+    console.log("After uusiPiletti: " + this.state.generatedCode);
     console.log("After uusiPiletti: " + this.state.category);
+    console.log("After uusiPiletti: " + this.state.showCode);
 
     fetch("http://localhost:8080/uusi/", {
       method: "POST",
@@ -84,17 +95,11 @@ class Uusipiletti extends Component {
       }
     }).then(res => {
       res.json().then(data => {
-        console.log("Post: " + this.state.generatedcode);
+        console.log("Post: " + this.state.generatedCode);
         console.log("Got new ticket!");
+        console.log("After post: " + this.state.showCode)
       });
     });
-  };
-
-  haePiletti = () => {
-    fetch("/sortatutViisi")
-      .then(response => response.json())
-      .then(data => this.setState({ data }));
-    console.log("Matsku saatu");
   };
 
   render() {
@@ -106,7 +111,7 @@ class Uusipiletti extends Component {
       title,
       price,
       klo,
-      paivays
+      paivays,
     } = this.state;
     const isEnabled =
       category.length > 0 &&
@@ -296,6 +301,9 @@ class Uusipiletti extends Component {
             Tallenna ilmoitus
           </button>
         </form>
+        <div>
+          <UusiPilettiKoodi showCode={this.state.showCode} generatedCode={this.state.generatedCode}/>
+        </div>
       </div>
     );
   }
