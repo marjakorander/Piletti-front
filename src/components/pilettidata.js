@@ -22,7 +22,7 @@ class Pilettidata extends Component {
 
   render() {
     const tapahtumalista = this.state.data.map(function(data) {
-      // päivä millisekunneiksi ja siitä päivämääräksi
+      // date to milliseconds and then back to date
       var paivays = new Date(data.paivays);
       var millisekunnit = paivays.getTime();
       var mikaPaiva = new Date(millisekunnit).toLocaleDateString("fi");

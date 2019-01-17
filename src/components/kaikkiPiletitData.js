@@ -15,7 +15,7 @@ class KaikkiPiletitData extends Component {
     this.haePiletti();
   }
 
-  // tsekataan mikä tilanne on propseissa -> mitä näytetään
+  // checking the situation in props and select what data is fetched
   componentDidUpdate(prevProps) {
     if (this.props.filterCategory !== prevProps.filterCategory && this.props.filterCategory !== "sortatutTulevat") {
       console.log("Filtteröinti")
@@ -27,7 +27,7 @@ class KaikkiPiletitData extends Component {
     }
   }
 
-  // haetaan kaikki piletit
+  // getting all pilettis
   haePiletti = () => {
     fetch("/kategoria/sortatutTulevat")
       .then(response => response.json())
@@ -35,7 +35,7 @@ class KaikkiPiletitData extends Component {
     console.log("Matsku saatu");
   };
 
-  // haetaan vain filtteröidyt piletit
+  // getting only filtered pilettis
   filtteroi = () => {
     fetch("/kategoria/" + this.props.filterCategory)
       .then(response => response.json())
@@ -45,7 +45,7 @@ class KaikkiPiletitData extends Component {
 
   render() {
     const tapahtumalista = this.state.data.map(function(data) {
-      // päivä millisekunneiksi ja siitä päivämääräksi
+      // date to milliseconds and then back to date
       var paivays = new Date(data.paivays);
       var millisekunnit = paivays.getTime();
       var mikaPaiva = new Date(millisekunnit).toLocaleDateString("fi");
