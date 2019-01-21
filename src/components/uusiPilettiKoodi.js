@@ -6,7 +6,7 @@ class UusiPilettiKoodi extends Component {
         if (this.props.showCode) { 
         return (
             <div>
-                <h1>Koodisi on {this.props.generatedCode}</h1>
+                <h1>Koodisi on {this.props.code}</h1>
             </div>
         );
         } else {

@@ -14,7 +14,7 @@ class Uusipiletti extends Component {
       title: "",
       paivays: "",
       klo: "",
-      generatedCode: "",
+      code: "",
       showCode: false
     };
   }
@@ -52,10 +52,11 @@ class Uusipiletti extends Component {
     this.generateCode();
   };
 
+  // Make it return in handleSubmit
   generateCode = () => {
-    const random = Math.floor(Math.random() * 99999 + 10000);
-    this.setState({ generatedCode: random }, () => {
-      console.log("Generated code: " + this.state.generatedCode);
+    const random = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
+    this.setState({ code: random }, () => {
+      console.log("Generated code: " + this.state.code);
     });
   };
 
@@ -79,13 +80,14 @@ class Uusipiletti extends Component {
       title: this.state.title,
       paivays: this.state.paivays,
       klo: this.state.klo + ":00",
-      generatedCode: this.state.generatedCode
+      code: this.state.code
     };
 
-    console.log("After uusiPiletti: " + this.state.generatedCode);
+    console.log("After uusiPiletti: " + this.state.code);
     console.log("After uusiPiletti: " + this.state.category);
     console.log("After uusiPiletti: " + this.state.showCode);
 
+    // if code is already in database, get new one
     fetch("http://localhost:8080/uusi/", {
       method: "POST",
       body: JSON.stringify(uusiPiletti),
@@ -95,7 +97,7 @@ class Uusipiletti extends Component {
       }
     }).then(res => {
       res.json().then(data => {
-        console.log("Post: " + this.state.generatedCode);
+        console.log("Post: " + this.state.code);
         console.log("Got new ticket!");
         console.log("After post: " + this.state.showCode)
       });
@@ -250,7 +252,7 @@ class Uusipiletti extends Component {
                     <option value="Kruununhaka">Kruununhaka‎</option>
                     <option value="Kulosaari‎">Kulosaari</option>
                     <option value="Kumpula‎">Kumpula‎</option>
-                    <option value="Käpylä‎	">Käpylä‎</option>
+                    <option value="Käpylä">Käpylä</option>
                     <option value="Laajasalo‎">Laajasalo‎</option>
                     <option value="Laakso‎">Laakso‎</option>
                     <option value="Lauttasaari‎">Lauttasaari‎</option>
@@ -302,7 +304,7 @@ class Uusipiletti extends Component {
           </button>
         </form>
         <div>
-          <UusiPilettiKoodi showCode={this.state.showCode} generatedCode={this.state.generatedCode}/>
+          <UusiPilettiKoodi showCode={this.state.showCode} code={this.state.code}/>
         </div>
       </div>
     );

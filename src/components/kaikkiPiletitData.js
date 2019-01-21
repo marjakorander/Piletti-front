@@ -27,6 +27,7 @@ class KaikkiPiletitData extends Component {
     }
   }
 
+  // refactor so that you get all pilettis, then filter  
   // getting all pilettis
   haePiletti = () => {
     fetch("/kategoria/sortatutTulevat")
