@@ -49,7 +49,6 @@ class Uusipiletti extends Component {
 
   handleDistrictChange = event => {
     this.setState({ district: event.target.value });
-    this.generateCode();
   };
 
   // Make it return in handleSubmit
@@ -57,6 +56,7 @@ class Uusipiletti extends Component {
     const random = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
     this.setState({ code: random }, () => {
       console.log("Generated code: " + this.state.code);
+      return {code: random}
     });
   };
 
@@ -68,7 +68,7 @@ class Uusipiletti extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    this.generateCode();
     this.showCode();
 
     const uusiPiletti = {

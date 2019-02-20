@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import KaikkiPiletti from "./kaikkiPiletti";
+import Piletti from "./piletti";
 
 class KaikkiPiletitData extends Component {
   constructor() {
@@ -11,38 +11,24 @@ class KaikkiPiletitData extends Component {
 
   componentDidMount() {
     console.log("Toimii");
-    console.log("Data, filtterin kategoria: " + this.props.filterCategory);
     this.haePiletti();
   }
 
-  // checking the situation in props and select what data is fetched
-  componentDidUpdate(prevProps) {
-    if (this.props.filterCategory !== prevProps.filterCategory && this.props.filterCategory !== "sortatutTulevat") {
-      console.log("Filtteröinti")
-      this.filtteroi();
-    } 
-    if (this.props.filterCategory !== prevProps.filterCategory && this.props.filterCategory === "sortatutTulevat") {
-      console.log("Näytetään kaikki kategoriat")
-      this.haePiletti();
-    }
-  }
-
-  // refactor so that you get all pilettis, then filter  
-  // getting all pilettis
+  // getting all the pilettis
   haePiletti = () => {
-    fetch("/kategoria/sortatutTulevat")
+    fetch("/sortatutTulevat")
       .then(response => response.json())
       .then(data => this.setState({ data }));
     console.log("Matsku saatu");
   };
 
-  // getting only filtered pilettis
-  filtteroi = () => {
-    fetch("/kategoria/" + this.props.filterCategory)
-      .then(response => response.json())
-      .then(data => this.setState({ data }));
-    console.log("Filtteröity");
-  };
+  // make child component rerender when state in parent changes
+  componentDidUpdate(prevProps) {
+    // Typical usage (don't forget to compare props):
+    if (this.props.filterCategory !== prevProps.filterCategory) {
+      console.log("New filter:" + this.props.filterCategory)
+    }
+  }
 
   render() {
     const tapahtumalista = this.state.data.map(function(data) {
@@ -56,7 +42,7 @@ class KaikkiPiletitData extends Component {
 
       return (
         <div key={data.id}>
-          <KaikkiPiletti
+          <Piletti
             title={data.title}
             pvm={mikaPaiva}
             klo={mihinAikaan}
@@ -65,11 +51,16 @@ class KaikkiPiletitData extends Component {
             district={data.district}
             price={data.price}
             contact={data.contact}
+            code={data.code}
           />
         </div>
       );
     });
-    return <div>{tapahtumalista}</div>;
+    return (
+      <div>
+        {tapahtumalista}
+      </div>
+    );
   }
 }
 export default KaikkiPiletitData;
