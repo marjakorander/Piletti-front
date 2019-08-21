@@ -1,38 +1,30 @@
-import React, { Component } from "react";
+import React, { useState }from "react";
 
-class Piletti extends Component {
-  constructor() {
-    super();
-    this.state = {
-      isHidden: true
-    };
-  }
+const Piletti = ({ id, title, pvm, klo, category, info, district, price, contact }) => {
+  const [ isHidden, setIsHidden ] = useState(true)
 
-  toggleHidden() {
-    this.setState({
-      isHidden: !this.state.isHidden
-    });
-  }
+  const toggleHidden = () => {
+    setIsHidden(!isHidden)
+    console.log('is hidden', isHidden)
+  };
+  
+  const Lisatiedot = () => (
+    <div className="details">
+      <span className="category">{category}</span>
+      <span className="info">{info}</span>
+      <span className="district">{district}</span>
+      <span className="price">{price} euroa</span>
+      <span className="contact">{contact}</span>
+    </div>)
 
-  render() {
-    const Lisatiedot = () => (
-        <div className="details">
-          <span className="category">{this.props.category}</span>
-          <span className="info">{this.props.info}</span>
-          <span className="district">{this.props.district}</span>
-          <span className="price">{this.props.price} euroa</span>
-          <span className="contact">{this.props.contact}</span>
-        </div>)
-
-    return (
-          <div className="yksiTapahtuma" key={this.props.id} onClick={this.toggleHidden.bind(this)}>
-            <span className="title">{this.props.title}</span>
-            <span className="pvm">{this.props.pvm}</span>
-            <span className="klo">{this.props.klo}</span>
-            {!this.state.isHidden && <Lisatiedot />}
-        </div>
-    )
-  }
+return (
+      <div className="yksiTapahtuma" key={id} onClick={toggleHidden}>
+        <span className="title">{title}</span>
+        <span className="pvm">{pvm}</span>
+        <span className="klo">{klo}</span>
+        {!isHidden && <Lisatiedot />}
+    </div>
+)
 }
 
 export default Piletti;

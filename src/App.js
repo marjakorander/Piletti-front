@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import Etusivu from './components/etusivu';
-import './App.css';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import Etusivu from './components/Etusivu';
 import Uusipiletti from './components/uusipiletti';
-
+import './App.css';
 
 class App extends Component {
   render() {

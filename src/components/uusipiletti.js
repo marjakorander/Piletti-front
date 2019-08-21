@@ -1,91 +1,118 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Linkit from "./linkit";
 import UusiPilettiKoodi from "./uusiPilettiKoodi";
 
-class Uusipiletti extends Component {
-  constructor() {
-    super();
-    this.state = {
-      category: "Valitse",
-      contact: "",
-      district: "Valitse",
-      info: "",
-      price: "",
-      title: "",
-      paivays: "",
-      klo: "",
-      code: "",
-      showCode: false
-    };
-  }
+const Uusipiletti = () => {
+  const [ category, setCategory ] = useState("Valitse");
+  const [ contact, setContact ] = useState();
+  const [ district, setDistrict ] = useState("Valitse");
+  const [ info, setInfo ] = useState();
+  const [ price, setPrice ] = useState();
+  const [ title, setTitle ] = useState();
+  const [ paivays, setPaivays ] = useState();
+  const [ klo, setKlo ] = useState();
+  const [ code, setCode ] = useState();
+  const [ showCode, setShowCode ] = useState(false)
 
-  handleTitleChange = event => {
-    this.setState({ title: event.target.value });
+  // constructor() {
+  //   super();
+  //   this.state = {
+  //     category: "Valitse",
+  //     contact: "",
+  //     district: "Valitse",
+  //     info: "",
+  //     price: "",
+  //     title: "",
+  //     paivays: "",
+  //     klo: "",
+  //     code: "",
+  //     showCode: false
+  //   };
+  // }
+
+  // const handleFilterChange = event => {
+  //   setFilterCategory(event.target.value);
+  //   console.log("Handle filter change (etusivu): " + filterCategory);
+  // };
+
+  const handleTitleChange = event => {
+    setTitle(event.target.value);
   };
 
-  handleCategoryChange = event => {
-    this.setState({ category: event.target.value });
+  const handleCategoryChange = event => {
+    setCategory(event.target.value);
   };
 
-  handlePriceChange = event => {
-    this.setState({ price: event.target.value });
+  const handlePriceChange = event => {
+    setPrice(event.target.value);
   };
 
-  handleInfoChange = event => {
-    this.setState({ info: event.target.value });
+  const handleInfoChange = event => {
+    setInfo(event.target.value);
   };
 
-  handlePvmChange = event => {
-    this.setState({ paivays: event.target.value });
+  const handlePvmChange = event => {
+    setPaivays(event.target.value);
   };
 
-  handleKloChange = event => {
-    this.setState({ klo: event.target.value });
+  const handleKloChange = event => {
+    setKlo(event.target.value);
   };
 
-  handleContactChange = event => {
-    this.setState({ contact: event.target.value });
+  const handleContactChange = event => {
+    setContact(event.target.value);
   };
 
-  handleDistrictChange = event => {
-    this.setState({ district: event.target.value });
+  const handleDistrictChange = event => {
+    setDistrict(event.target.value);
   };
 
   // Make it return in handleSubmit
-  generateCode = () => {
+  const generateCode = () => {
     const random = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
-    this.setState({ code: random }, () => {
-      console.log("Generated code: " + this.state.code);
+    setCode(random, () => {
+      console.log("Generated code: ", code);
       return {code: random}
     });
   };
 
-  showCode = () => {
-    this.setState({showCode: true}, () => {
-      console.log("Show code: " + this.state.showCode);
-    });
+  const viewCode = () => {
+    setShowCode(true)
   }
 
-  handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    this.generateCode();
-    this.showCode();
+    generateCode();
+    viewCode();
+
 
     const uusiPiletti = {
-      category: this.state.category,
-      contact: this.state.contact,
-      district: this.state.district,
-      info: this.state.info,
-      price: this.state.price,
-      title: this.state.title,
-      paivays: this.state.paivays,
-      klo: this.state.klo + ":00",
-      code: this.state.code
+      category: category,
+      contact: contact,
+      district: district,
+      info: info,
+      price: price,
+      title: title,
+      paivays: paivays,
+      klo: klo + ":00",
+      code: code
     };
 
-    console.log("After uusiPiletti: " + this.state.code);
-    console.log("After uusiPiletti: " + this.state.category);
-    console.log("After uusiPiletti: " + this.state.showCode);
+    // const uusiPiletti = {
+    //   category: this.state.category,
+    //   contact: this.state.contact,
+    //   district: this.state.district,
+    //   info: this.state.info,
+    //   price: this.state.price,
+    //   title: {title},
+    //   paivays: this.state.paivays,
+    //   klo: this.state.klo + ":00",
+    //   code: this.state.code
+    // };
+
+    console.log("After uusiPiletti: ", code);
+    console.log("After uusiPiletti: ", category);
+    console.log("After uusiPiletti: ", showCode);
 
     // if code is already in database, get new one
     fetch("http://localhost:8080/uusi/", {
@@ -97,24 +124,14 @@ class Uusipiletti extends Component {
       }
     }).then(res => {
       res.json().then(data => {
-        console.log("Post: " + this.state.code);
+        console.log("Post: " + code);
         console.log("Got new ticket!");
-        console.log("After post: " + this.state.showCode)
+        console.log("After post: " + showCode)
       });
     });
   };
 
-  render() {
-    const {
-      info,
-      contact,
-      category,
-      district,
-      title,
-      price,
-      klo,
-      paivays,
-    } = this.state;
+    // const { info, contact, category, district, title, price, klo, paivays} = this.state;
     const isEnabled =
       category.length > 0 &&
       category !== "Valitse" &&
@@ -126,13 +143,15 @@ class Uusipiletti extends Component {
       paivays.length > 0 &&
       info.length > 0 &&
       contact.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,}$/);
+
+
     return (
       <div className={"uusiPiletti"}>
         <Linkit />
         <div className="apinNimiPieni">
           <h2>PILETTI</h2>
         </div>
-        <form className="upiletti" onSubmit={this.handleSubmit}>
+        <form className="upiletti" onSubmit={handleSubmit}>
           <table>
             <tbody>
               <tr>
@@ -143,7 +162,7 @@ class Uusipiletti extends Component {
                     id="title"
                     type="text"
                     maxLength={255}
-                    onChange={this.handleTitleChange}
+                    onChange={handleTitleChange}
                   />
                 </td>
               </tr>
@@ -156,7 +175,7 @@ class Uusipiletti extends Component {
                   <select
                     name="category"
                     id="category"
-                    onChange={this.handleCategoryChange}
+                    onChange={handleCategoryChange}
                   >
                     <option value="Valinta">Valitse</option>
                     <option value="Musiikki">Musiikki</option>
@@ -173,7 +192,7 @@ class Uusipiletti extends Component {
                     name="price"
                     id="price"
                     type="number"
-                    onChange={this.handlePriceChange}
+                    onChange={handlePriceChange}
                   />
                 </td>
               </tr>
@@ -185,7 +204,7 @@ class Uusipiletti extends Component {
                     id="info"
                     type="text"
                     maxLength={255}
-                    onChange={this.handleInfoChange}
+                    onChange={handleInfoChange}
                   />
                 </td>
               </tr>
@@ -196,7 +215,7 @@ class Uusipiletti extends Component {
                     name="paivays"
                     id="paivays"
                     type="date"
-                    onChange={this.handlePvmChange}
+                    onChange={handlePvmChange}
                   />
                 </td>
               </tr>
@@ -207,7 +226,7 @@ class Uusipiletti extends Component {
                     name="klo"
                     id="klo"
                     type="time"
-                    onChange={this.handleKloChange}
+                    onChange={handleKloChange}
                   />
                 </td>
               </tr>
@@ -219,7 +238,7 @@ class Uusipiletti extends Component {
                     id="contact"
                     type="text"
                     maxLength={255}
-                    onChange={this.handleContactChange}
+                    onChange={handleContactChange}
                   />
                 </td>
               </tr>
@@ -232,7 +251,7 @@ class Uusipiletti extends Component {
                   <select
                     name="district"
                     id="district"
-                    onChange={this.handleDistrictChange}
+                    onChange={handleDistrictChange}
                   >
                     <option value="ValitseAlue‎">Valitse</option>
                     <option value="Etu-Töölö‎">Etu-Töölö</option>
@@ -261,9 +280,7 @@ class Uusipiletti extends Component {
                     <option value="Meilahti‎">Meilahti‎</option>
                     <option value="Mellunkylä‎">Mellunkylä</option>
                     <option value="Munkkiniemi‎">Munkkiniemi‎</option>
-                    <option value="Mustikkamaa–Korkeasaari‎">
-                      Mustikkamaa–Korkeasaari‎
-                    </option>
+                    <option value="Mustikkamaa–Korkeasaari‎">Mustikkamaa–Korkeasaari‎</option>
                     <option value="Oulunkylä‎">Oulunkylä</option>
                     <option value="Pakila‎">Pakila‎</option>
                     <option value="Pasila‎">Pasila‎</option>
@@ -304,11 +321,10 @@ class Uusipiletti extends Component {
           </button>
         </form>
         <div>
-          <UusiPilettiKoodi showCode={this.state.showCode} code={this.state.code}/>
+          <UusiPilettiKoodi showCode={showCode} code={code}/>
         </div>
       </div>
     );
-  }
 }
 
 export default Uusipiletti;

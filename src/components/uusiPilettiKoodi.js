@@ -1,20 +1,20 @@
-import React, { Component } from 'react';
+import React, {} from 'react';
 
-class UusiPilettiKoodi extends Component {
+const UusiPilettiKoodi = ({showCode, code}) => {
 
-    render() {
-        if (this.props.showCode) { 
-        return (
-            <div>
-                <h1>Koodisi on {this.props.code}</h1>
-            </div>
-        );
-        } else {
+    // Koodin tarkoitus on, että myöhemmin lipun ilmoittaja voi palata poistamaan oman ilmoituksensa koodilla.
+
+        if (!showCode) {
             return (
                 null
             )
-        }
-    }
+        }       
+        return (
+            <div>
+                <h1>Koodisi on {code}.
+                Ota koodi talteen!</h1>
+            </div>
+        )
 }
 
 export default UusiPilettiKoodi;
