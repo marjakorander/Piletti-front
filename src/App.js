@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import Etusivu from './components/Etusivu';
 import Uusipiletti from './components/uusipiletti';
 import './App.css';
 
-class App extends Component {
-  render() {
+const App = () => {
     return (
       <div className="App">
           <Router>
@@ -18,7 +17,6 @@ class App extends Component {
           </Router>
       </div>
     );
-  }
 }
 
 export default App;

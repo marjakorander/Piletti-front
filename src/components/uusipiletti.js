@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Linkit from "./linkit";
 import UusiPilettiKoodi from "./uusiPilettiKoodi";
+import axios from "axios";
 
 const Uusipiletti = () => {
   const [ category, setCategory ] = useState("Valitse");
@@ -13,27 +14,6 @@ const Uusipiletti = () => {
   const [ klo, setKlo ] = useState();
   const [ code, setCode ] = useState();
   const [ showCode, setShowCode ] = useState(false)
-
-  // constructor() {
-  //   super();
-  //   this.state = {
-  //     category: "Valitse",
-  //     contact: "",
-  //     district: "Valitse",
-  //     info: "",
-  //     price: "",
-  //     title: "",
-  //     paivays: "",
-  //     klo: "",
-  //     code: "",
-  //     showCode: false
-  //   };
-  // }
-
-  // const handleFilterChange = event => {
-  //   setFilterCategory(event.target.value);
-  //   console.log("Handle filter change (etusivu): " + filterCategory);
-  // };
 
   const handleTitleChange = event => {
     setTitle(event.target.value);
@@ -67,25 +47,11 @@ const Uusipiletti = () => {
     setDistrict(event.target.value);
   };
 
-  // Make it return in handleSubmit
-  const generateCode = () => {
-    const random = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
-    setCode(random, () => {
-      console.log("Generated code: ", code);
-      return {code: random}
-    });
-  };
-
-  const viewCode = () => {
-    setShowCode(true)
-  }
-
+  // JOS KANNASSA ON JO, GENEROI UUSI
   const handleSubmit = (event) => {
     event.preventDefault();
-    generateCode();
-    viewCode();
-
-
+    const random = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
+    setCode(random);
     const uusiPiletti = {
       category: category,
       contact: contact,
@@ -95,43 +61,17 @@ const Uusipiletti = () => {
       title: title,
       paivays: paivays,
       klo: klo + ":00",
-      code: code
-    };
-
-    // const uusiPiletti = {
-    //   category: this.state.category,
-    //   contact: this.state.contact,
-    //   district: this.state.district,
-    //   info: this.state.info,
-    //   price: this.state.price,
-    //   title: {title},
-    //   paivays: this.state.paivays,
-    //   klo: this.state.klo + ":00",
-    //   code: this.state.code
-    // };
-
-    console.log("After uusiPiletti: ", code);
-    console.log("After uusiPiletti: ", category);
-    console.log("After uusiPiletti: ", showCode);
-
-    // if code is already in database, get new one
-    fetch("http://localhost:8080/uusi/", {
-      method: "POST",
-      body: JSON.stringify(uusiPiletti),
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    }).then(res => {
-      res.json().then(data => {
-        console.log("Post: " + code);
-        console.log("Got new ticket!");
-        console.log("After post: " + showCode)
-      });
+      code: random
+    }
+    axios.post('http://localhost:8080/uusi/', uusiPiletti)
+    .then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
     });
-  };
-
-    // const { info, contact, category, district, title, price, klo, paivays} = this.state;
+    setShowCode(true);
+  }
+  
     const isEnabled =
       category.length > 0 &&
       category !== "Valitse" &&
@@ -143,7 +83,6 @@ const Uusipiletti = () => {
       paivays.length > 0 &&
       info.length > 0 &&
       contact.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,}$/);
-
 
     return (
       <div className={"uusiPiletti"}>

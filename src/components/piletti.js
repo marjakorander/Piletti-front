@@ -1,4 +1,4 @@
-import React, { useState }from "react";
+import React, { useState } from "react";
 
 const Piletti = ({ id, title, pvm, klo, category, info, district, price, contact }) => {
   const [ isHidden, setIsHidden ] = useState(true)

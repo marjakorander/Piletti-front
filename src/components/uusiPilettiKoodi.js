@@ -1,9 +1,7 @@
-import React, {} from 'react';
+import React from 'react';
 
 const UusiPilettiKoodi = ({showCode, code}) => {
-
     // Koodin tarkoitus on, että myöhemmin lipun ilmoittaja voi palata poistamaan oman ilmoituksensa koodilla.
-
         if (!showCode) {
             return (
                 null
