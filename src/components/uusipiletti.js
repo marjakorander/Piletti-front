@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Linkit from "./linkit";
-import UusiPilettiKoodi from "./uusiPilettiKoodi";
+import Linkit from "./Linkit";
+import UusiPilettiKoodi from "./UusiPilettiKoodi";
 import axios from "axios";
 
 const Uusipiletti = () => {

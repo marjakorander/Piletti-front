@@ -5,7 +5,7 @@ const Filter = ({ handleFilterChange }) => {
     <div>
       <form className="filtteri">
         <label htmlFor="filter">Valitse kategoria:</label>
-        <select name="category" id="category" onChange={handleFilterChange}>
+        <select name="category" id="category" onChange={handleFilterChange} className="filtterit">
           <option value="SortatutTulevat">Näytä kaikki</option>
           <option value="Musiikki">Musiikki</option>
           <option value="Urheilu">Urheilu</option>

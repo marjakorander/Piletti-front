@@ -1,8 +1,8 @@
 import React from "react";
-import Piletti from "./piletti";
+import Piletti from "./Piletti";
 
 const Piletit = ({ filtered }) => {
-  const tapahtumalista = filtered.map(filtered => {
+  const pilettilista = filtered.map(filtered => {
     // date to milliseconds and then back to date
     var paivays = new Date(filtered.paivays);
     var millisekunnit = paivays.getTime();
@@ -28,7 +28,7 @@ const Piletit = ({ filtered }) => {
       </div>
     );
   });
-  return <div>{tapahtumalista}</div>;
+  return <div>{pilettilista}</div>;
 };
 
 export default Piletit;

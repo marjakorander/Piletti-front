@@ -90,7 +90,8 @@
 
 .etusivulinkki, 
 .uusilinkki,
-.kaikkilinkki {
+.kaikkilinkki,
+.paivityslinkki {
   font-family: 'Carter One', cursive;
   color: black;
   padding-right: 10px;
@@ -117,7 +118,7 @@ nav a {
 label {
   font-family: 'Carter One', cursive;
   color: black;
-  font-size: .75rem;
+  font-size: .80rem;
   touch-action: manipulation;
   width: 130%;
  }
@@ -137,6 +138,27 @@ select {
 }
 
 .filtteri {
-  padding: 10px;
-  font-size: .50rem;
+  font-size: .80rem;
+}
+
+.filtterit {
+  margin-left: 40px;
+  width: 30%
+}
+
+/* DELETOINTI */
+
+.deletointi {
+  font-family: 'Carter One', cursive;
+  color: black;
+  font-size: .80rem;
+}
+
+.inputti {
+  width: 30%;
+  margin: 8px 0px 8px 26px;
+}
+
+.pilettihaku {
+  width: 20%;
 }

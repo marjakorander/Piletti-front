@@ -1,14 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Linkit from "./linkit";
+import Linkit from "./Linkit";
 import Filtteri from "./Filtteri";
-import Piletit from "./piletit";
+import Piletit from "./Piletit";
+import UpdateForm from "./UpdateForm";
+import Delete from "./Delete";
 
 const Etusivu = () => {
   const [data, setData] = useState([]);
   const [filterCategory, setFilterCategory] = useState("SortatutTulevat");
+  const [givenCode, setGivenCode] = useState("");
+  // const [pilettiFound, setPilettiFound] = useState("false");
 
-  // getting all the pilettis
+  // GETTING ALL PILETTIS
   useEffect(() => {
     console.log("effect");
     axios.get("/sortatutTulevat").then(response => {
@@ -18,30 +22,58 @@ const Etusivu = () => {
     });
   }, []);
 
+  //FILTERING BY CATEGORY
+
   const handleFilterChange = event => {
     setFilterCategory(event.target.value);
-    console.log("Handle filter change (etusivu): " + filterCategory);
+    console.log("Handle filter change (etusivu): ", filterCategory);
   };
 
-  const filteredPilettis =
+  const filteredByCategory = 
     filterCategory === "SortatutTulevat"
       ? data
       : data.filter(piletti => piletti.category.includes(filterCategory));
 
-  console.log("Filtered from Etusivu", filteredPilettis);
+  // FILTER BY CODE    
+
+  const filteredByCode = data.filter(piletti => piletti.code === givenCode);
+
+  const checkIfPilettiCode = data.some(piletti => piletti.code === givenCode);
+  console.log(checkIfPilettiCode)
+    
+  const submitHandler = event => {
+    event.preventDefault();
+    console.log(givenCode)
+  }
+
+  const changeHandler = event => {
+      setGivenCode(Number(event.target.value));
+  }
 
   return (
     <div className="etusivu">
-      <div className="hederi">
         <Linkit />
-      </div>
       <div className="apinNimi">
         <h1>PILETTI</h1>
       </div>
-      <Filtteri handleFilterChange={handleFilterChange} />
-      <div className="ekat">
-        <Piletit filtered={filteredPilettis} />
-      </div>
+        <Filtteri handleFilterChange={handleFilterChange} />
+        <UpdateForm changeHandler={changeHandler} submitHandler={submitHandler} />
+      <div>
+      {!givenCode || givenCode === "0" ? (
+          <div className="ekat">
+            <Piletit filtered={filteredByCategory} />
+          </div>
+        ) : (
+          <div>
+            <div className="ekat">
+              <Piletit filtered={filteredByCode} />
+            </div>
+            <div> 
+              {checkIfPilettiCode && <Delete givenCode={givenCode} />}
+            </div>  
+          </div>
+          )}
+      </div>    
     </div>
   );
 };
