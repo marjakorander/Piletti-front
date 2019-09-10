@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Delete = () => {
+const Delete = ({submitDelete}) => {
         return (
-            <button> Poista piletti </button>
-        );
+            <button onClick={submitDelete}>
+                Poista Piletti
+            </button>
+        )
 }
 
 export default Delete;

@@ -3,14 +3,13 @@ import axios from "axios";
 import Linkit from "./Linkit";
 import Filtteri from "./Filtteri";
 import Piletit from "./Piletit";
-import UpdateForm from "./UpdateForm";
+import DeleteForm from "./DeleteForm";
 import Delete from "./Delete";
 
 const Etusivu = () => {
   const [data, setData] = useState([]);
   const [filterCategory, setFilterCategory] = useState("SortatutTulevat");
-  const [givenCode, setGivenCode] = useState("");
-  // const [pilettiFound, setPilettiFound] = useState("false");
+  const [id, setId] = useState("");
 
   // GETTING ALL PILETTIS
   useEffect(() => {
@@ -23,7 +22,6 @@ const Etusivu = () => {
   }, []);
 
   //FILTERING BY CATEGORY
-
   const handleFilterChange = event => {
     setFilterCategory(event.target.value);
     console.log("Handle filter change (etusivu): ", filterCategory);
@@ -34,20 +32,28 @@ const Etusivu = () => {
       ? data
       : data.filter(piletti => piletti.category.includes(filterCategory));
 
-  // FILTER BY CODE    
+  // FILTER BY CODE
+  const filteredByCode = data.filter(piletti => piletti.id === id);
 
-  const filteredByCode = data.filter(piletti => piletti.code === givenCode);
-
-  const checkIfPilettiCode = data.some(piletti => piletti.code === givenCode);
+  const checkIfPilettiCode = data.some(piletti => piletti.id === id);
   console.log(checkIfPilettiCode)
-    
-  const submitHandler = event => {
-    event.preventDefault();
-    console.log(givenCode)
-  }
 
   const changeHandler = event => {
-      setGivenCode(Number(event.target.value));
+      setId(Number(event.target.value));
+      if (id === 0) {
+        setId("")
+      }
+  }
+
+  //DELETE PILETTI
+
+  const submitDelete = (event) => {
+    event.preventDefault();
+    axios.delete(`http://localhost:8080/piletti/${id}`)
+      .then(response => console.log(response.data))
+      .then(setData(data.filter(d => d.id !== id)))
+      .then(setId(""))
+    console.log("Piletti, jonka id on", id, "on poistettu")
   }
 
   return (
@@ -57,9 +63,9 @@ const Etusivu = () => {
         <h1>PILETTI</h1>
       </div>
         <Filtteri handleFilterChange={handleFilterChange} />
-        <UpdateForm changeHandler={changeHandler} submitHandler={submitHandler} />
+        <DeleteForm changeHandler={changeHandler} id={id}/>
       <div>
-      {!givenCode || givenCode === "0" ? (
+      {!id ? (
           <div className="ekat">
             <Piletit filtered={filteredByCategory} />
           </div>
@@ -69,7 +75,7 @@ const Etusivu = () => {
               <Piletit filtered={filteredByCode} />
             </div>
             <div> 
-              {checkIfPilettiCode && <Delete givenCode={givenCode} />}
+              {checkIfPilettiCode && <Delete givenCode={id} submitDelete={submitDelete}/>}
             </div>  
           </div>
           )}

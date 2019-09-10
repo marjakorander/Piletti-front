@@ -47,7 +47,6 @@ const Uusipiletti = () => {
     setDistrict(event.target.value);
   };
 
-  // JOS KANNASSA ON JO, GENEROI UUSI
   const handleSubmit = (event) => {
     event.preventDefault();
     const random = Math.floor(Math.random() * (99999 - 10000 + 1)) + 10000;
@@ -66,6 +65,7 @@ const Uusipiletti = () => {
     axios.post('http://localhost:8080/uusi/', uusiPiletti)
     .then((response) => {
       console.log(response);
+      setCode(response.data.code);
     }, (error) => {
       console.log(error);
     });
