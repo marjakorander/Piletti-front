@@ -1,19 +1,17 @@
+
 .App {
   background-color: #f8c102;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  /* justify-content: center; */
 }
 
-.kaikkiPiletit {
-  font-size: calc(20px);
-  text-align: center;
-  color: black;
-  background-color: rgb(255, 255, 255);
-  margin-left: auto;
-  margin-right: auto;
+.hederi {
+  height: 50px;
+  position: fixed;
+  padding: 5px
 }
 
 .ekat {
@@ -25,29 +23,29 @@
   margin-right: auto;
 }
 
-.kaikki {
-  text-align: center;
-  color: black;
-  font-size: calc(12px + 2vmin);
-  background-color: rgb(255, 255, 255);
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.yksiTapahtuma, .yksiTapahtumaKaikki {
+.yksiPiletti {
   border: solid 2px black;
+  width: 800px
 }
 
-.title, 
+.details {
+  width: 800px
+}
+
+.title {
+  border-right: solid 1px  black;
+  padding-right: 5px;
+  text-align: center
+}
 .pvm {
   border-right: solid 1px  black;
-  padding-right: 10px;
-  padding-left: 10px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .klo {
-  padding-right: 10px;
-  padding-left: 10px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .price,
@@ -56,8 +54,8 @@
 .info {
   border-right: solid 1px black;
   font-size: calc(3px + 2vmin);
-  padding-right: 10px;
-  padding-left: 10px;
+  padding-right: 5px;
+  padding-left: 5px;
 }
 
 .contact {
@@ -80,6 +78,7 @@
   color: #f80002;
   text-shadow: 4px 4px black;
   text-align: left;
+  padding: 5px
 }
 
 .uusiPiletti {
@@ -89,9 +88,7 @@
 /* LINKIT */
 
 .etusivulinkki, 
-.uusilinkki,
-.kaikkilinkki,
-.paivityslinkki {
+.uusilinkki {
   font-family: 'Carter One', cursive;
   color: black;
   padding-right: 10px;
@@ -156,9 +153,15 @@ select {
 
 .inputti {
   width: 30%;
-  margin: 8px 0px 8px 26px;
+  margin: 8px 0px 8px 23px;
 }
 
 .pilettihaku {
   width: 20%;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
 }

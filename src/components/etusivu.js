@@ -59,30 +59,32 @@ const Etusivu = () => {
   };
 
   return (
-    <div className="etusivu">
-      <Linkit />
-      <div className="apinNimi">
-        <h1>PILETTI</h1>
-      </div>
-      <Filtteri handleFilterChange={handleFilterChange} />
-      <DeleteForm changeHandler={changeHandler} code={code} />
-      <div>
-        {!code ? (
-          <div className="ekat">
-            <Piletit filtered={filteredByCategory} />
-          </div>
-        ) : (
-          <div>
+    <div>
+        <Linkit />
+      <div className="etusivu">
+        <div className="apinNimi">
+          <h2>PILETTI</h2>
+        </div>
+        <Filtteri handleFilterChange={handleFilterChange} />
+        <DeleteForm changeHandler={changeHandler} code={code} />
+        <div>
+          {!code ? (
             <div className="ekat">
-              <Piletit filtered={filteredByCode} />
+              <Piletit filtered={filteredByCategory} />
             </div>
+          ) : (
             <div>
-              {checkIfPilettiCode && (
-                <Delete code={code} submitDelete={submitDelete} />
-              )}
+              <div className="ekat">
+                <Piletit filtered={filteredByCode} />
+              </div>
+              <div>
+                {checkIfPilettiCode && (
+                  <Delete code={code} submitDelete={submitDelete} />
+                )}
+              </div>
             </div>
-          </div>
-        )}
+          )}
+        </div>
       </div>
     </div>
   );

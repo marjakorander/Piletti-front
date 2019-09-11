@@ -87,8 +87,10 @@ const Uusipiletti = () => {
     contact.match(/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[a-zA-Z]{2,}$/);
 
   return (
-    <div className={"uusiPiletti"}>
-      <Linkit />
+    <div>
+      <div className="hederi">
+        <Linkit />
+      </div>
       <div className="apinNimiPieni">
         <h2>PILETTI</h2>
       </div>
@@ -102,7 +104,7 @@ const Uusipiletti = () => {
                   name="title"
                   id="title"
                   type="text"
-                  maxLength={255}
+                  maxLength={50}
                   onChange={handleTitleChange}
                 />
               </td>
@@ -133,6 +135,7 @@ const Uusipiletti = () => {
                   name="price"
                   id="price"
                   type="number"
+                  maxLength={5}
                   onChange={handlePriceChange}
                 />
               </td>
@@ -144,7 +147,7 @@ const Uusipiletti = () => {
                   name="info"
                   id="info"
                   type="text"
-                  maxLength={255}
+                  maxLength={50}
                   onChange={handleInfoChange}
                 />
               </td>
@@ -178,7 +181,7 @@ const Uusipiletti = () => {
                   name="contact"
                   id="contact"
                   type="text"
-                  maxLength={255}
+                  maxLength={50}
                   onChange={handleContactChange}
                 />
               </td>

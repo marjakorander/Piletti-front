@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Piletti = ({ id, title, pvm, klo, category, info, district, price, contact }) => {
+const Piletti = ({ id, title, pvm, klo, info, district, price, contact }) => {
   const [ isHidden, setIsHidden ] = useState(true)
 
   const toggleHidden = () => {
@@ -10,7 +10,6 @@ const Piletti = ({ id, title, pvm, klo, category, info, district, price, contact
   
   const Lisatiedot = () => (
     <div className="details">
-      <span className="category">{category}</span>
       <span className="info">{info}</span>
       <span className="district">{district}</span>
       <span className="price">{price} euroa</span>
@@ -18,7 +17,7 @@ const Piletti = ({ id, title, pvm, klo, category, info, district, price, contact
     </div>)
 
 return (
-      <div className="yksiTapahtuma" key={id} onClick={toggleHidden}>
+      <div className="yksiPiletti" key={id} onClick={toggleHidden}>
         <span className="title">{title}</span>
         <span className="pvm">{pvm}</span>
         <span className="klo">{klo}</span>

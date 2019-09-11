@@ -6,7 +6,7 @@ const UpdateForm = ({ changeHandler, code }) => {
       <form className="deletointi">
         <div>
           Anna pilettikoodisi:{" "}
-          <input value={code} onChange={changeHandler} className="inputti" />
+          <input value={code} type="number" onChange={changeHandler} className="inputti" />
         </div>
       </form>
     </div>
